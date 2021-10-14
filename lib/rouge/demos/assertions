@@ -38,6 +38,13 @@ csp SpecA3 associated to GasAnalysis csp-begin
     channel done3
     DONE3 = done3 -> DONE3
     SpecA3 = GasAnalysis::O__(0,const_GasAnalysis_thr) [| {|GasAnalysis::stop|} |] GasAnalysis::stop.out -> DONE3
+
+    x = set(<1,2>)
 csp-end
 
-assertion A3: SpecA3 is deadlock-free.
+assertion noFall : PathPlanningSM refines NoFall in the traces model with constants
+			cliff set to 1,
+			nozzle set to 1,
+			battery_low set to 0,
+			sleep_time set to 1,
+			acc_distance set to 1
