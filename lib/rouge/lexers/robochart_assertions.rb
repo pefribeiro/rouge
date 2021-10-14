@@ -19,7 +19,7 @@ module Rouge
                 rule %r(//.*?$), Comment::Single
 
                 rule %r/\b(csp-begin|csp-end)\b/, Keyword
-                rule %r/\b(csp|timed|assertion|associated(\s*)to|refines|equals|is(\s*)deterministic|is(\s*)timelock-free|terminates|is(\s*)refined(\s*)by|is(\s*)deadlock-free|is(\s*)divergence-free)\b/, Keyword
+                rule %r/\b(csp|untimed|timed|assertion|associated(\s*)to|refines|equals|is(\s*)deterministic|is(\s*)timelock-free|terminates|is(\s*)refined(\s*)by|is(\s*)deadlock-free|is(\s*)divergence-free|set(\s*)to|with(\s*)constant|with(\s*)constants|in(\s*)the(\s*)traces(\s*)model|in(\s*)the(\s*)failures-divergences(\s*)model|in(\s*)the(\s*)tick-tock(\s*)model|in(\s*)the(\s*)failures(\s*)model)\b/, Keyword
             end
 
             state :commentx do
