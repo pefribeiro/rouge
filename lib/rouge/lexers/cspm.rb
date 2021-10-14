@@ -25,7 +25,7 @@ module Rouge
                 rule %r/"/, Str::Double, :string
                 rule %r/\[(FD|T|F)=/, Keyword
 
-                rule %r/\\|\?|!|->|\[\]|\|~\||\|\|\||\[\||\|]|\[\[|\]\]|\|\|/, Operator
+                rule %r/\\|\?|!|->|\[\]|\|~\||\|\|\||\[\||\|]|\[\[|\]\]|\|\||;|\||\|\\/, Operator
                 rule %r/{\||\|}|{|}|\.\.|:|#|<-|<->|==|<|>|<=|>=|@|&|=|[+-\/*%^]/, Operator
                 rule %r/\b(assert|nametype|datatype|let|within|newtype|channel|external|transparent)\b/, Keyword
                 rule %r/\b(if|then|else)\b/, Keyword
