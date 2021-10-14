@@ -1,0 +1,29 @@
+{-
+ This is a multiline comment.
+-}
+
+-- Single comment preceding a type and channel declarations.
+nametype core_real = {0..1}
+channel in, out : core_real
+channel output : Int
+
+-- A definition
+x = "a string"
+
+y = set(<1,2>)
+
+Buffer = in?x -> BufferOne(x)
+BufferOne(x) = out!x -> Buffer [] Buffer
+
+-- A memory cell
+channel getV, setV : core_real
+
+Mem(x) = setV?x -> Mem(x) [] get!x -> Mem(x)
+
+BufferMem = (Mem(0) [| {| getV, setV |} |] Operator) \ {|getV,setV|}
+
+Operator = getV?x -> (in?x -> setV!x -> Operator 
+                      []
+                      out!x -> Operator)
+
+assert BufferMem [FD= Operator
