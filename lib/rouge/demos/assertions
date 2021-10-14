@@ -1,0 +1,43 @@
+/*
+ * A comment in a RoboChart assertions file.
+ */
+
+// Another comment, followed by a csp block
+timed csp Block csp-begin
+
+    nametype core_real = {0..1}
+    channel in, out : core_real
+    channel output : Int
+
+    -- A definition
+    x = "a string"
+
+    y = set(<1,2>)
+
+    Buffer = in?x -> BufferOne(x)
+    BufferOne(x) = out!x -> Buffer [] Buffer
+
+    -- A memory cell
+    channel getV, setV : core_real
+
+    Mem(x) = setV?x -> Mem(x) [] get!x -> Mem(x)
+
+    BufferMem = (Mem(0) [| {| getV, setV |} |] Operator) \ {|getV,setV|}
+
+    Operator = getV?x -> (in?x -> setV!x -> Operator 
+                        []
+                        out!x -> Operator)
+
+    assert BufferMem [FD= Operator
+
+csp-end
+
+timed assertion A0: Process refines Process2
+
+csp SpecA3 associated to GasAnalysis csp-begin
+    channel done3
+    DONE3 = done3 -> DONE3
+    SpecA3 = GasAnalysis::O__(0,const_GasAnalysis_thr) [| {|GasAnalysis::stop|} |] GasAnalysis::stop.out -> DONE3
+csp-end
+
+assertion A3: SpecA3 is deadlock-free.
