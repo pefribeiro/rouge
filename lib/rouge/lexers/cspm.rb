@@ -13,12 +13,7 @@ module Rouge
             aliases "cspm"
             filenames "*.csp"
 
-            state :whitespace do
-                rule %r/\s+/, Text::Whitespace
-            end
-
             state :root do
-                mixin :whitespace
                 rule %r(\{-), Comment::Multiline, :comment
                 rule %r(--.*?$), Comment::Single
 
@@ -35,7 +30,7 @@ module Rouge
                 rule %r/\b(length|length|null|head|tail|concat|elem|union|inter|diff|Union|Inter|member|card|empty|set|Set|Seq|seq|true|false|True|False|STOP|SKIP|CHAOS|DIV|WAIT|RUN|prioritise|prioritisepo|error|show|productions|extensions|diamond|normal|sbisim|tau_loop_factor|timed_priority|model_compress|explicate|sbisim|wbisim|chase)\b/, Name::Builtin
 
                 rule %r/\(|\)|,|\[|\]/, Punctuation
-                rule %r/(\s*)([a-zA-Z0-9_\']+)(\s*)(\(.*?\)|)(\s*=)/ do
+                rule %r/^(\s*)([a-zA-Z0-9_\']+)(\s*)(\(.*?\)|)(\s*=)/ do
                     groups Text::Whitespace, Name::Function, Text::Whitespace, Text, Text
                 end 
                 rule %r/[A-Za-z_][A-Za-z0-9_\']*/, Name

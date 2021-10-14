@@ -27,3 +27,26 @@ Operator = getV?x -> (in?x -> setV!x -> Operator
                       out!x -> Operator)
 
 assert BufferMem [FD= Operator
+
+-- generate intensity not
+intensity(<>) = 0
+intensity(<(c,i)>^xs) = let
+n = intensity(xs)
+within if (n > i) then n else i
+
+-- generate location not
+--location :: (<Chem.Intensity>) -> real
+location(gs) = let
+find(<>,_) = 0
+    find(<(c,i)>^xs,n) = if (i == intensity(gs)) then n else find(xs,n+1)
+within
+if (length(gs) > 0) then (360/length(gs))*find(gs,0) else 0
+
+-- generate analysis not
+analysis(gs) = if (intensity(gs) > 0) then gasD else noGas
+
+-- generate greater not
+greater(i1,i2) = i1 > i2
+
+-- generate Angle not
+nametype Angle = {0,180}
