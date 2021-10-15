@@ -50,3 +50,14 @@ greater(i1,i2) = i1 > i2
 
 -- generate Angle not
 nametype Angle = {0,180}
+
+external prioritise
+external dbisim
+external sbisim
+
+assert P :[deterministic]
+assert P :[deadlock free]
+assert P :[deadlock-free]
+assert P :[divergence-free]
+assert P :[divergence free]
+assert P :[has trace]: <a,e>

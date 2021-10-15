@@ -21,13 +21,14 @@ module Rouge
                 rule %r/\[(FD|T|F)=/, Keyword
 
                 rule %r/\\|\?|!|->|\[\]|\|~\||\|\|\||\[\||\|\]|\[\[|\]\]|\|\||;|\||\|\\/, Operator
+                rule %r/(:\[deadlock free\]|:\[deadlock-free\]|:\[deterministic\]|:\[divergence-free\]|:\[divergence free\]|:\[has trace\]:)/, Keyword
                 rule %r/{\||\|}|{|}|\.\.|:|#|<-|<->|==|<|>|<=|>=|@|&|=|[+-\/*%^]/, Operator
                 rule %r/\b(nametype|datatype|let|within|newtype|channel)\b/, Keyword::Declaration
                 rule %r/\b(assert|if|then|else|external|transparent)\b/, Keyword
                 rule %r/\b([0-9]+)\b/, Num::Integer
                 rule %r/\b(true|false|True|False)\b/, Keyword::Constant
                 rule %r/\b(Bool|Char|Events|Int|Proc)\b/, Keyword::Type
-                rule %r/\b(length|length|null|head|tail|concat|elem|union|inter|diff|Union|Inter|member|card|empty|set|Set|Seq|seq|true|false|True|False|STOP|SKIP|CHAOS|DIV|WAIT|RUN|prioritise|prioritisepo|error|show|productions|extensions|diamond|normal|sbisim|tau_loop_factor|timed_priority|model_compress|explicate|sbisim|wbisim|chase)\b/, Name::Builtin
+                rule %r/\b(length|length|null|head|tail|concat|elem|union|inter|diff|Union|Inter|member|card|empty|set|Set|Seq|seq|true|false|True|False|STOP|SKIP|CHAOS|DIV|WAIT|RUN|prioritise|prioritisepo|error|show|productions|extensions|diamond|normal|sbisim|tau_loop_factor|timed_priority|model_compress|explicate|sbisim|wbisim|dbisim|chase)\b/, Name::Builtin
 
                 rule %r/\(|\)|,|\[|\]/, Punctuation
                 rule %r/^(\s*)([a-zA-Z0-9_\']+)(\s*)(\(.*?\)|)(\s*=)/ do
